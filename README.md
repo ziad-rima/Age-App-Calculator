@@ -46,6 +46,43 @@ Users should be able to:
 
 ## My process
 
+For this project, I also followed the mobile-first approach, started by building the main component which would contain child components.
+
+The first component is `Inputs.jsx` which contains the inputs, each input has its own component: 
+
+`Inputs.jsx`:
+```jsx
+import DayInput from "./DayInput"
+import MonthInput from "./MonthInput"
+import YearInput from "./YearInput"
+const Inputs = () => {
+  return (
+    <div className='inputs-component'>
+      <DayInput />
+      <MonthInput />
+      <YearInput />
+    </div>
+  )
+}
+export default Inputs
+```
+
+- All inputs had the same structure, which is: 
+```jsx
+const DayInput = () => {
+  return (
+    <div className='day-component'>
+      <h2 className="day-title poppins-bold">DAY</h2>
+      <div className="day-number-container">
+        <label htmlFor="day-input"></label>
+        <input type="number" className="day-input poppins-bold" id="day-input"/>
+      </div>
+    </div>
+  )
+}
+export default DayInput
+```
+
 ### Built with
 
 - Semantic HTML5 markup
@@ -55,7 +92,6 @@ Users should be able to:
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
 - [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
 
 ### What I learned
 
