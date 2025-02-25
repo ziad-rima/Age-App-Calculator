@@ -15,6 +15,7 @@
   --Smokey-grey: hsl(0, 1%, 44%);
   --Off-black: hsl(0, 0%, 8%);
   font-size: 10px; /* Font size (inputs): 32px */
+  --spacing: 1.6px;
 }
 
 .poppins-regular {
@@ -37,5 +38,107 @@
 
 body {
   min-height: 100vh;
+  background-color: var(--Light-grey);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.2rem;
 }
 
+.main-component {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: var(--Off-white);
+  padding: 1.4rem;
+  padding-top: 3rem;
+  border-radius: 1rem 1rem 4.5rem 1rem;
+  max-width: 420px;
+  width: 340px;
+}
+
+.inputs-component {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: .8rem;
+  width: 100%;
+}
+
+.day-component,
+.month-component,
+.year-component {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 5.8rem;
+  margin-right: 1.8rem;
+}
+
+.day-title,
+.month-title,
+.year-title {
+  color: var(--Smokey-grey);
+  letter-spacing: var(--spacing);
+  margin-bottom: .4rem;
+  font-size: 1.2rem;
+}
+
+.day-number-container,
+.month-number-container,
+.year-number-container {
+  border: 1px solid var(--Smokey-grey);
+  border-radius: 6px;
+  width: 70px;
+  height: 3.9rem;
+  text-align: center;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.day-input,
+.month-input,
+.year-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  max-width: 100%;
+  height: 100%;
+  text-align: left;
+  font-size: 2rem;
+  padding-left: 1rem;
+}
+
+.day-input::-webkit-outer-spin-button,
+.day-input::-webkit-inner-spin-button,
+.month-input::-webkit-outer-spin-button,
+.month-input::-webkit-inner-spin-button,
+.year-input::-webkit-outer-spin-button,
+.year-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  
+  .main-component {
+    max-width: 600px;
+  }
+  
+  .inputs-component {
+    gap: 1rem;
+  }
+
+  .day-component,
+  .month-component,
+  .year-component {
+    max-width: 6.5rem;
+  }
+
+  .day-input,
+  .month-input,
+  .year-input {
+    font-size: 1.6rem;
+  }
+}
