@@ -82,6 +82,85 @@ const DayInput = () => {
 }
 export default DayInput
 ```
+- I initialized a state variable for each input that would hold the value entered by the user. I then passed the state updater functions to their corresponding input components in which I'd validate the input and store the value in the state:
+`App.jsx`:
+```jsx
+import { useState } from "react"
+import Inputs from "./components/Inputs"
+import Button from "./components/Button"
+const App = () => {
+  const [day, setDay] = useState(null);
+  const [month, setMonth] = useState(null);
+  const [year, setYear] = useState(null);
+  return (
+    <div className='main-component'>
+      <Inputs 
+        setDay={setDay}
+        setMonth={setMonth}
+        setYear={setYear}
+      />
+      <p className="error-whole-form hidden">Must be a valid date</p>
+      <Button />
+    </div>
+  )
+}
+export default App
+```
+
+- Here's how I handled the validation: 
+`DayInput.jsx`:
+```jsx
+import { useState } from "react";
+
+const DayInput = (props) => { 
+  
+  const [error, setError] = useState(false)
+  const getDayInputValue = (event) => {
+    let day = parseInt(event.target.value, 10);
+    if ( day > 0 && day <= 31) {
+      props.setDay(day);
+    } else {
+      alert("Invalid Day");
+    }
+  }
+  
+  return (
+    <div className='day-component'>
+      <h2 className="day-title poppins-bold">DAY</h2>
+      <div className="day-number-container">
+        <label htmlFor="day-input"></label>
+        <input 
+          type="number" 
+          className="day-input poppins-bold" 
+          id="day-input"
+          onChange={(event) => getDayInputValue(event)}
+        />
+      </div>
+      <p className="error-empty hidden">This field is required</p>
+      <p className="error-invalid hidden">Must be a valid day</p>
+    </div>
+  )
+}
+export default DayInput
+```
+This was the initial version, I'd be replacing the `alert` message with UI feedback later on.
+
+- I then created the `Button.jsx` component:
+`Button.jsx`:
+```jsx
+import ArrowIconSVG from "./ArrowIconSVG"
+
+const Button = () => {
+  return (
+    <div className='button-component'>
+      <button className='age-button'><ArrowIconSVG /></button>
+      <div className="divider"></div>
+    </div>
+  )
+}
+export default Button 
+```
+
 
 ### Built with
 
