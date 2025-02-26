@@ -46,6 +46,16 @@ body {
   padding: 1.2rem;
 }
 
+.hidden {
+  display: none;
+}
+
+.show {
+  font-family: "Poppins", serif;
+  color: var(--Light-red);
+  font-style: italic;
+}
+
 .main-component {
   display: flex;
   flex-direction: column;
@@ -118,6 +128,35 @@ body {
 .year-input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.button-component {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin-top: 4.5rem;
+  margin-bottom: 5rem;
+  position: relative;
+}
+
+.age-button {
+  border: none;
+  outline: none;
+  background-color: var(--Purple);
+  border-radius: 50%;
+  padding: 1.2rem;
+  position: absolute;
+  left: 40%;
+  cursor: pointer;
+}
+
+.divider {
+  width: 90%;
+  max-width: 400px;
+  height: .2rem;
+  background-color: var(--Light-grey);
+  align-self: center;
 }
 
 @media (min-width: 768px) {
