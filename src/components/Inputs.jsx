@@ -1,12 +1,12 @@
 import DayInput from "./DayInput"
 import MonthInput from "./MonthInput"
 import YearInput from "./YearInput"
-const Inputs = () => {
+const Inputs = (props) => {
   return (
     <div className='inputs-component'>
-      <DayInput />
-      <MonthInput />
-      <YearInput />
+      <DayInput setDay={props.setDay}/>
+      <MonthInput setMonth={props.setMonth} />
+      <YearInput setYear={props.setYear}/>
     </div>
   )
 }
