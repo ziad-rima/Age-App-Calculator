@@ -2,30 +2,40 @@ import { useState } from "react";
 
 const DayInput = (props) => { 
   
-  const [error, setError] = useState(false)
+  const [error, setError] = useState("")
   const getDayInputValue = (event) => {
-    let day = parseInt(event.target.value, 10);
-    if ( day > 0 && day <= 31) {
-      props.setDay(day);
+    
+    if (!event.target.value) {
+      setError("empty");
+      return
     } else {
-      alert("Invalid Day");
+      let day = parseInt(event.target.value, 10);
+      if (day <= 0 || day > 31) {
+        setError("invalid");
+      } else {
+        setError("");
+        props.setDay(day);
+      }
     }
   }
   
   return (
     <div className='day-component'>
-      <h2 className="day-title poppins-bold">DAY</h2>
+      <h2 className= "day-title poppins-bold">DAY</h2>
       <div className="day-number-container">
         <label htmlFor="day-input"></label>
         <input 
           type="number" 
+          placeholder="DD"
           className="day-input poppins-bold" 
           id="day-input"
           onChange={(event) => getDayInputValue(event)}
         />
       </div>
-      <p className="error-empty hidden">This field is required</p>
-      <p className="error-invalid hidden">Must be a valid day</p>
+      <div className="error-container">
+        <p className={`error-empty ${error != "empty" && 'hidden'}`}>This field is required</p>
+        <p className={`error-invalid ${error != "invalid" && 'hidden'}`}>Must be a valid day</p>
+      </div>
     </div>
   )
 }
