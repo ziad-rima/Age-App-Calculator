@@ -50,11 +50,28 @@ body {
   display: none;
 }
 
-.show {
+ .error-whole-form {
+  font-family: "Poppins", serif;
+  color: var(--Light-red);
+  font-style: italic;
+  position: absolute;
+  top: 33%;
+}
+
+.error-container {
+  display: flex; 
+  gap: 1rem;    
+  align-items: center;
+  position: absolute;
+  top: 105%;
+  left: 0;
+  width: 100%;
+  white-space: nowrap; 
   font-family: "Poppins", serif;
   color: var(--Light-red);
   font-style: italic;
 }
+
 
 .main-component {
   display: flex;
@@ -84,6 +101,7 @@ body {
   align-items: flex-start;
   max-width: 5.8rem;
   margin-right: 1.8rem;
+  position: relative;
 }
 
 .day-title,
@@ -118,6 +136,7 @@ body {
   text-align: left;
   font-size: 2rem;
   padding-left: 1rem;
+  color: var(--Off-black);
 }
 
 .day-input::-webkit-outer-spin-button,
@@ -135,7 +154,7 @@ body {
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  margin-top: 4.5rem;
+  margin-top: 8.2rem;
   margin-bottom: 5rem;
   position: relative;
 }
@@ -153,11 +172,45 @@ body {
 
 .divider {
   width: 90%;
-  max-width: 400px;
+  max-width: 700px;
   height: .2rem;
   background-color: var(--Light-grey);
   align-self: center;
 }
+
+.outputs-component {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.day-output-container,
+.month-output-container,
+.year-output-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.days-number,
+.months-number,
+.years-number {
+  font-size: 5rem;
+  color: var(--Purple);
+  font-style: italic;
+  font-weight: 800;
+}
+
+.day-result,
+.month-result,
+.year-result {
+  font-size: 5rem;
+  color: var(--Off-black);
+  font-style: italic;
+}
+
 
 @media (min-width: 768px) {
   
@@ -179,5 +232,68 @@ body {
   .month-input,
   .year-input {
     font-size: 1.6rem;
+  }
+}
+
+@media (min-width: 1028px) {
+
+  .main-component {
+    width: 640px;
+  }
+
+  .day-number-container,
+  .month-number-container,
+  .year-number-container {
+    width: 100px;
+    padding: 0 2rem;
+  }
+
+  .day-component,
+  .month-component,
+  .year-component {
+    max-width: 5.8rem;
+    margin-left: 2.5rem;
+  }
+
+  .day-input,
+  .month-input,
+  .year-input {
+    padding: 0;
+  }
+
+  .inputs-component {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4rem;
+    width: 100%;
+  }
+  
+  .day-output-container,
+  .month-output-container,
+  .year-output-container {
+    margin-left: 2.9rem;
+  }
+
+  .day-result,
+  .month-result,
+  .year-result {
+    font-size: 5rem;
+    font-weight: 800;
+  }
+
+  .age-button:hover {
+    background-color: var(--Off-black);
+  }
+
+  .age-button {
+    left: 90%;
+  }
+
+  .day-number-container:hover,
+  .month-number-container:hover,
+  .year-number-container:hover {
+    border-color: var(--Purple);
+    cursor: pointer;
   }
 }
