@@ -160,8 +160,146 @@ const Button = () => {
 }
 export default Button 
 ```
+I created the components for outputs:
+- `DayOutput.jsx`
+- `MonthOutput.jsx`
+- `YearOutput.jsx`
+And they are all contained inside their parent component `Outputs.jsx`
 
+Inside `App.jsx`, I created the `handleButton` function which performs the last step of the validation process (checking the leap year and how many days are in each month):
 
+`App.jx`:
+```jsx
+const handleButton = () => {
+    if (!day || !month || !year) {
+      setError("invalid");
+      return;
+    }
+
+    const daysInMonth = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+    const isLeapYear = (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+    if (month === 2 && isLeapYear) {
+      daysInMonth[2] = 29;
+    }
+
+    if (day > daysInMonth[month]) {
+      setError("invalid");
+      return;
+    }
+    setError("");
+    const today = new Date()
+    const currentYear = today.getFullYear();
+    const currentMonth = today.getMonth() + 1;
+    const currentDay = today.getDate();
+
+    let years = currentYear - year;
+    let months = currentMonth - month;
+    let days = currentDay - day;
+  
+    if (days < 0) {
+      months--;
+      let previousMonth = currentMonth === 1 ? 12 : currentMonth - 1;
+      let daysInPreviousMonth = new Date(currentYear, previousMonth, 0).getDate();
+      days += daysInPreviousMonth;
+    }
+  
+    if (months < 0) {
+      years--;
+      months += 12;
+    }
+
+    setOutputDay(days);
+    setOutputMonth(months);
+    setOutputYear(years);
+    setValid(true);
+};
+```
+I also declared a state variable for each output component along with a `valid` state variable that is set to `true` when all inputs are validated:
+`App.jsx`:
+```jsx
+const [outputDay, setOutputDay] = useState(null);
+const [outputMonth, setOutputMonth] = useState(null);
+const [outputYear, setOutputYear] = useState(null);
+const [valid, setValid] = useState(false);
+```
+- Here's how I handled errors (same principle applies for all components):
+
+`DayInput.jsx`:
+```jsx
+...
+const [error, setError] = useState("")
+const getDayInputValue = (event) => {   
+  if (!event.target.value) {
+    setError("empty");
+    return
+  } else {
+    let day = parseInt(event.target.value, 10);
+    if (day <= 0 || day > 31) {
+      setError("invalid");
+    } else {
+      setError("");
+      props.setDay(day);
+    }
+  }
+}
+...
+<div className="day-number-container">
+  <label htmlFor="day-input"></label>
+  <input 
+    type="number" 
+    placeholder="DD"
+    className="day-input poppins-bold" 
+    id="day-input"
+    onChange={(event) => getDayInputValue(event)}
+  />
+</div>
+<div className="error-container">
+  <p className={`error-empty ${error != "empty" && 'hidden'}`}>This field is required</p>
+  <p className={`error-invalid ${error != "invalid" && 'hidden'}`}>Must be a valid day</p>
+</div>
+...
+```
+And in order for the errors to not overlap each other, I created the `handleInputChange` function inside `App.jsx` that would be executed whenever the user deleted/typed inside the input field:
+```jsx
+const handleInputChange = (setter) => (value) => {
+  setter(value);
+  setError("");
+};
+...
+return (
+  <div className="main-component">
+    <Inputs
+      setDay={handleInputChange(setDay)}
+      setMonth={handleInputChange(setMonth)}
+      setYear={handleInputChange(setYear)}
+    />
+    <p className={`error-whole-form ${error !== "invalid" ? "hidden" : ""}`}>
+      Must be a valid date
+    </p>
+    <Button handleButton={handleButton} />
+    <Outputs 
+      years={outputYear}
+      months={outputMonth}
+      days={outputDay}
+      valid={valid}
+    />
+  </div>
+);
+...
+```
+The last part was about passing the outputs to their corresponding components along with the `valid` state variable.
+`DayOutput.jsx`:
+```jsx
+const DayOutput = (props) => {
+  return (
+    <div className='day-output-container'>
+      <h1 className='day-result'><span className='days-number'>{props.valid ? props.days :  <><span className="dash">-</span><span className="dash">-</span></>}</span> days</h1>
+    </div>
+  )
+}
+export default DayOutput
+```
 ### Built with
 
 - Semantic HTML5 markup
