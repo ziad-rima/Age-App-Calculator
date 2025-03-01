@@ -1,9 +1,10 @@
 import ArrowIconSVG from "./ArrowIconSVG"
 
-const Button = () => {
+const Button = (props) => {
+
   return (
     <div className='button-component'>
-      <button className='age-button'><ArrowIconSVG /></button>
+      <button onClick={() => props.handleButton()} className='age-button'><ArrowIconSVG /></button>
       <div className="divider"></div>
     </div>
   )
