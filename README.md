@@ -41,8 +41,8 @@ Users should be able to:
 
 ### Links
 
-- []()
-- []()
+- [Solution URL](https://www.frontendmentor.io/solutions/responsive-react-age-calculator-AUXFhnz7xx)
+- [Live Site URL](https://calculatorfront.netlify.app/)
 
 ## My process
 
@@ -164,7 +164,8 @@ I created the components for outputs:
 - `DayOutput.jsx`
 - `MonthOutput.jsx`
 - `YearOutput.jsx`
-And they are all contained inside their parent component `Outputs.jsx`
+
+- And they are all contained inside their parent component `Outputs.jsx`
 
 Inside `App.jsx`, I created the `handleButton` function which performs the last step of the validation process (checking the leap year and how many days are in each month):
 
@@ -308,16 +309,6 @@ export default DayOutput
 - CSS Grid
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-
-### What I learned
-
-
-### Continued development
-
-
-### Useful resources
-
 
 ## Author
 
@@ -326,5 +317,4 @@ export default DayOutput
 - X - [@rima4082](https://x.com/rima4082)
 
 
-## Acknowledgments
 
